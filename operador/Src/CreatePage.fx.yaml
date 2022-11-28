@@ -1,0 +1,402 @@
+CreatePage As screen:
+    Height: =Max(App.Height, App.DesignHeight)
+    OnVisible: |-
+        =UpdateContext({msgv:false})
+    Orientation: =If(CreatePage.Width < CreatePage.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= CreatePage.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    Group3 As group:
+        Height: =88
+        Width: =88
+        X: =0
+        Y: =0
+        ZIndex: =1
+
+        Rectangle1_8 As rectangle:
+            BorderColor: =RGBA(0, 0, 255, 1)
+            DisabledFill: =Rectangle1_8.Fill
+            Fill: =RGBA(62,96,170,0)
+            FocusedBorderColor: =Rectangle1_8.BorderColor
+            Height: =88
+            HoverFill: =Rectangle1_8.Fill
+            OnSelect: =Navigate(HomePage, ScreenTransition.None)
+            PressedFill: =Rectangle1_8.Fill
+            Width: =88
+            ZIndex: =5
+
+        icon6 As icon.ChevronLeft:
+            AccessibleLabel: ="Previous Screen"
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(56, 56, 56, 1)
+            DisabledFill: =icon6.Fill
+            FocusedBorderColor: =White
+            FocusedBorderThickness: =1
+            Height: =32
+            HoverBorderColor: =ColorFade(icon6.BorderColor, 20%)
+            HoverColor: =ColorFade(icon6.Color, 20%)
+            HoverFill: =icon6.Fill
+            Icon: =Icon.ChevronLeft
+            OnSelect: =Navigate(HomePage, ScreenTransition.None)
+            PressedBorderColor: =ColorFade(icon6.BorderColor, -20%)
+            PressedColor: =ColorFade(icon6.Color, -20%)
+            PressedFill: =icon6.Fill
+            TabIndex: =0
+            Width: =32
+            X: =28
+            Y: =28
+            ZIndex: =6
+
+    Rectangle2_17 As rectangle:
+        BorderColor: =RGBA(0, 0, 255, 1)
+        DisabledFill: =Rectangle2_17.Fill
+        Fill: =RGBA(242, 244, 249, 1)
+        FocusedBorderColor: =Rectangle2_17.BorderColor
+        Height: =1048
+        HoverFill: =Rectangle2_17.Fill
+        PressedFill: =Rectangle2_17.Fill
+        Width: =640
+        Y: =88
+        ZIndex: =2
+
+    Rectangle1_7 As rectangle:
+        BorderColor: =RGBA(0, 0, 255, 1)
+        DisabledFill: =Rectangle1_7.Fill
+        Fill: =RGBA(109, 49, 162, 1)
+        FocusedBorderColor: =Rectangle1_7.BorderColor
+        Height: =88
+        HoverFill: =Rectangle1_7.Fill
+        PressedFill: =Rectangle1_7.Fill
+        Width: =640
+        ZIndex: =3
+
+    TextBox1_3 As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        FocusedBorderColor: =TextBox1_3.BorderColor
+        FontWeight: =Lighter
+        Height: =88
+        HoverBorderColor: =TextBox1_3.BorderColor
+        HoverColor: =TextBox1_3.Color
+        HoverFill: =TextBox1_3.Fill
+        PressedBorderColor: =TextBox1_3.BorderColor
+        PressedColor: =TextBox1_3.Color
+        PressedFill: =TextBox1_3.Fill
+        Size: =28
+        Text: ="New ticket"
+        Width: =464
+        X: =88
+        ZIndex: =4
+
+    Button1 As button:
+        AutoDisableOnSelect: =false
+        BorderColor: =ColorFade(Button1.Fill, -15%)
+        BorderThickness: =0
+        DisabledBorderColor: =ColorFade(Button1.BorderColor, 70%)
+        Fill: =RGBA(107,0,64,.8) 
+        FocusedBorderColor: =Black
+        FocusedBorderThickness: =2
+        Height: =80
+        HoverBorderColor: =ColorFade(Button1.BorderColor, 20%)
+        HoverColor: =Button1.Color
+        HoverFill: =Button1.Fill
+        OnSelect: |-
+            =If(CreatedBy.Text="" ||  Dropdown_Area.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BAccount Name'="Select an area" ||Dropdown_Priority.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BPriority'="Select a priority" || Subject.Text="" || Description.Text="" || Len(CreatedBy.Text) = 0 ||Len(Subject.Text) = 0|| Len(Description.Text) = 0,
+                UpdateContext({msgv:false});UpdateContext({msgv:true}),
+                Collect(TicketsCollect,{ID:Text(CountRows(TicketsCollect)+1),Owner:CreatedBy.Text,AccountName:Dropdown_Area.SelectedText.Value,Priority:Dropdown_Priority.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BPriority',Subject:Subject.Text,Description:Description.Text,Status:"New", DateCreated:Text(Today())});
+                Navigate(TicketsPage, ScreenTransition.Fade,{type:"New"}))
+        PressedBorderColor: =Button1.BorderColor
+        PressedColor: =Button1.Color
+        PressedFill: =ColorFade(Button1_1.Fill,20%)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =24
+        Text: ="Create ticket"
+        Width: =640
+        Y: =1056
+        ZIndex: =7
+
+    TextBox5 As label:
+        Align: =Center
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(237, 28, 36, 1)
+        Fill: =RGBA(230, 230, 230, 1)
+        FocusedBorderColor: =TextBox5.BorderColor
+        Height: =38
+        HoverBorderColor: =TextBox5.BorderColor
+        HoverColor: =TextBox5.Color
+        HoverFill: =TextBox5.Fill
+        PressedBorderColor: =TextBox5.BorderColor
+        PressedColor: =TextBox5.Color
+        PressedFill: =TextBox5.Fill
+        Size: =14
+        Text: ="Please fill out the required fields *"
+        Visible: =msgv
+        Width: =640
+        Y: =1017.8169014084508
+        ZIndex: =8
+
+    CreatedBy As text:
+        AccessibleLabel: ="Enter Created By"
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderThickness: =3
+        Default: =""
+        FocusedBorderColor: =Black
+        FocusedBorderThickness: =2
+        FontWeight: =Normal
+        Height: =52
+        HoverBorderColor: =CreatedBy.BorderColor
+        HoverColor: =CreatedBy.Color
+        HoverFill: =CreatedBy.Fill
+        PaddingLeft: =10
+        PaddingRight: =10
+        PressedBorderColor: =CreatedBy.BorderColor
+        PressedColor: =CreatedBy.Color
+        PressedFill: =CreatedBy.Fill
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Reset: =Button2.Pressed || Button2_1.Pressed 
+        Size: =20
+        Width: =580
+        X: =30
+        Y: =167.94187575501732
+        ZIndex: =10
+
+    TextBox4 As label:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(80, 80, 80, 1)
+        FocusedBorderColor: =TextBox4.BorderColor
+        FontWeight: =Lighter
+        Height: =46
+        HoverBorderColor: =TextBox4.BorderColor
+        HoverColor: =TextBox4.Color
+        HoverFill: =TextBox4.Fill
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =TextBox4.BorderColor
+        PressedColor: =TextBox4.Color
+        PressedFill: =TextBox4.Fill
+        Size: =20
+        Text: ="Created by *"
+        Width: =582
+        X: =29.020408163265305
+        Y: =113.550724637681
+        ZIndex: =11
+
+    TextBox4_1 As label:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(80, 80, 80, 1)
+        FocusedBorderColor: =TextBox4_1.BorderColor
+        FontWeight: =Lighter
+        Height: =46
+        HoverBorderColor: =TextBox4_1.BorderColor
+        HoverColor: =TextBox4_1.Color
+        HoverFill: =TextBox4_1.Fill
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =TextBox4_1.BorderColor
+        PressedColor: =TextBox4_1.Color
+        PressedFill: =TextBox4_1.Fill
+        Size: =20
+        Text: ="Area *"
+        Width: =581.9795918367347
+        X: =30.3191094619666
+        Y: =366.2198697514442
+        ZIndex: =14
+
+    Dropdown_Area As dropdown:
+        AccessibleLabel: ="Select Area"
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderThickness: =3
+        ChevronBackground: =RGBA(0,0,0,0)
+        ChevronFill: =RGBA(115, 115, 115, 1)
+        FocusedBorderColor: =Black
+        FocusedBorderThickness: =2
+        Height: =52
+        HoverBorderColor: =Dropdown_Area.BorderColor
+        HoverColor: =Dropdown_Area.Color
+        HoverFill: =RGBA(230, 229, 229, 1)
+        Items: =AccountName
+        PaddingBottom: =5
+        PaddingTop: =5
+        PressedBorderColor: =Dropdown_Area.BorderColor
+        PressedColor: =Dropdown_Area.Color
+        PressedFill: =Dropdown_Area.Fill
+        Reset: =Button2.Pressed || Button2_1.Pressed 
+        SelectionFill: =RGBA(178,90,144,1)
+        Size: =20
+        Width: =580
+        X: =30
+        Y: =421.7951362121406
+        ZIndex: =15
+
+    Subject As text:
+        AccessibleLabel: ="Enter Subject"
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderThickness: =3
+        Default: =""
+        FocusedBorderColor: =Black
+        FocusedBorderThickness: =2
+        Height: =52
+        HoverBorderColor: =CreatedBy.BorderColor
+        HoverColor: =CreatedBy.Color
+        HoverFill: =CreatedBy.Fill
+        PaddingLeft: =10
+        PaddingRight: =10
+        PressedBorderColor: =CreatedBy.BorderColor
+        PressedColor: =CreatedBy.Color
+        PressedFill: =CreatedBy.Fill
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Reset: =Button2.Pressed || Button2_1.Pressed 
+        Size: =20
+        Width: =580
+        X: =30
+        Y: =549.6805082401977
+        ZIndex: =16
+
+    TextBox4_4 As label:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(80, 80, 80, 1)
+        FocusedBorderColor: =TextBox4_4.BorderColor
+        FontWeight: =Lighter
+        Height: =46
+        HoverBorderColor: =TextBox4_4.BorderColor
+        HoverColor: =TextBox4_4.Color
+        HoverFill: =TextBox4_4.Fill
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =TextBox4_4.BorderColor
+        PressedColor: =TextBox4_4.Color
+        PressedFill: =TextBox4_4.Fill
+        Size: =20
+        Text: ="Subject *"
+        Width: =580.9795918367347
+        X: =29.020408163265305
+        Y: =493.8607856942913
+        ZIndex: =17
+
+    Description As text:
+        AccessibleLabel: ="Enter Description"
+        BorderColor: =RGBA(204, 204, 204, 1)
+        BorderThickness: =3
+        Default: =""
+        FocusedBorderColor: =Black
+        FocusedBorderThickness: =2
+        Height: =255
+        HoverBorderColor: =CreatedBy.BorderColor
+        HoverColor: =CreatedBy.Color
+        HoverFill: =CreatedBy.Fill
+        Mode: =MultiLine
+        PaddingBottom: =10
+        PaddingLeft: =10
+        PaddingRight: =10
+        PaddingTop: =8
+        PressedBorderColor: =CreatedBy.BorderColor
+        PressedColor: =CreatedBy.Color
+        PressedFill: =CreatedBy.Fill
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Reset: =Button2.Pressed || Button2_1.Pressed 
+        Size: =20
+        Width: =580
+        X: =30
+        Y: =676.9096385542174
+        ZIndex: =18
+
+    TextBox4_5 As label:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(80, 80, 80, 1)
+        FocusedBorderColor: =TextBox4_5.BorderColor
+        FontWeight: =Lighter
+        Height: =46
+        HoverBorderColor: =TextBox4_5.BorderColor
+        HoverColor: =TextBox4_5.Color
+        HoverFill: =TextBox4_5.Fill
+        PaddingBottom: =0
+        PaddingLeft: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        PressedBorderColor: =TextBox4_5.BorderColor
+        PressedColor: =TextBox4_5.Color
+        PressedFill: =TextBox4_5.Fill
+        Size: =20
+        Text: ="Description *"
+        Width: =581.9795918367347
+        X: =29.020408163265305
+        Y: =621.7461577223489
+        ZIndex: =19
+
+    Group12 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =20
+
+        TextBox4_2 As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(80, 80, 80, 1)
+            FocusedBorderColor: =TextBox4_2.BorderColor
+            FontWeight: =Lighter
+            Height: =46
+            HoverBorderColor: =TextBox4_2.BorderColor
+            HoverColor: =TextBox4_2.Color
+            HoverFill: =TextBox4_2.Fill
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =TextBox4_2.BorderColor
+            PressedColor: =TextBox4_2.Color
+            PressedFill: =TextBox4_2.Fill
+            Size: =20
+            Text: ="Priority *"
+            Width: =580.9795918367347
+            X: =29.020408163265305
+            Y: =240.00752523716827
+            ZIndex: =12
+
+        Dropdown_Priority As dropdown:
+            AccessibleLabel: ="Select Priority"
+            BorderColor: =RGBA(204, 204, 204, 1)
+            BorderThickness: =3
+            ChevronBackground: =RGBA(62,96,170,0)
+            ChevronFill: =RGBA(115, 115, 115, 1)
+            FocusedBorderColor: =Black
+            FocusedBorderThickness: =2
+            FontWeight: =Normal
+            Height: =52
+            HoverBorderColor: =Dropdown_Area.BorderColor
+            HoverColor: =Dropdown_Area.Color
+            HoverFill: =RGBA(230, 229, 229, 1)
+            Items: =PriorityDropdown
+            PaddingBottom: =3
+            PaddingTop: =7
+            PressedBorderColor: =Dropdown_Area.BorderColor
+            PressedColor: =Dropdown_Area.Color
+            PressedFill: =Dropdown_Area.Fill
+            Reset: =Button2.Pressed || Button2_1.Pressed 
+            SelectionFill: =RGBA(178,90,144,1)
+            Size: =20
+            Width: =580
+            X: =30
+            Y: =294.1542202692932
+            ZIndex: =13
+
