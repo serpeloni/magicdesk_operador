@@ -419,7 +419,7 @@ HomePage As screen:
             PressedColor: =TextBox2.Color
             PressedFill: =TextBox2.Fill
             Size: =18
-            Text: ="All tickets"
+            Text: ="Todos tickets"
             Width: =171
             X: =16
             Y: =86
@@ -470,9 +470,9 @@ HomePage As screen:
             PressedColor: =TextBox2_1.Color
             PressedFill: =TextBox2_1.Fill
             Size: =18
-            Text: =If(TextBox2_6.Text="1","New ticket","New tickets")
-            Width: =151
-            X: =51
+            Text: ="Novos tickets"
+            Width: =165
+            X: =33
             Y: =77
             ZIndex: =2
 
@@ -522,7 +522,7 @@ HomePage As screen:
             PressedColor: =TextBox2_4.Color
             PressedFill: =TextBox2_4.Fill
             Size: =18
-            Text: ="On hold"
+            Text: ="Em Espera"
             Width: =148
             X: =9
             Y: =80
@@ -573,7 +573,7 @@ HomePage As screen:
             PressedColor: =TextBox2_2.Color
             PressedFill: =TextBox2_2.Fill
             Size: =18
-            Text: ="In progress"
+            Text: ="Em execução"
             Width: =174
             X: =21
             Y: =80
@@ -624,7 +624,7 @@ HomePage As screen:
             PressedColor: =TextBox2_3.Color
             PressedFill: =TextBox2_3.Fill
             Size: =18
-            Text: ="Closed"
+            Text: ="Fechados"
             Width: =148
             X: =17
             Y: =80
