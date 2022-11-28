@@ -1394,8 +1394,8 @@
       "ControlPropertyState": [
         {
           "AFDDataSourceName": "",
-          "AutoRuleBindingEnabled": true,
-          "AutoRuleBindingString": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "ThisItem.TicketTypes",
           "InvariantPropertyName": "Text",
           "IsLockable": false,
           "NameMapSourceSchema": "*[]"
