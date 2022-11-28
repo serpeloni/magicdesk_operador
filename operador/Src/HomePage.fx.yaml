@@ -275,9 +275,9 @@ HomePage As screen:
                 HoverFill: =Heading2.Fill
                 OnSelect: |-
                     =If(ThisItem.TicketTypes="Todos tickets",
-                        Navigate(TicketsPage,ScreenTransition.Fade,{type:"Todos"}),
-                    If(ThisItem.TicketTypes="Novod tickets",
-                        Navigate(TicketsPage,ScreenTransition.Fade,{type:"N"}),
+                        Navigate(TicketsPage,ScreenTransition.Fade,{type:"All"}),
+                    If(ThisItem.TicketTypes="Novos tickets",
+                        Navigate(TicketsPage,ScreenTransition.Fade,{type:"New"}),
                     If(ThisItem.TicketTypes="Tickets in progress",
                         Navigate(TicketsPage,ScreenTransition.Fade,{type:"In progress"}),
                     If(ThisItem.TicketTypes="Tickets closed",
